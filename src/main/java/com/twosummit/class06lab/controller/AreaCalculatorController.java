@@ -49,16 +49,19 @@ public class AreaCalculatorController extends HttpServlet {
 
             // store proccessed message in request object for transfer to view
             //request.setAttribute("welcomeMessage", msg);
+            request.setAttribute("areaOfRectangle", area);
             
         } catch( Exception e ) {
             //msg = e.getMessage();
+            area = e.getMessage();
             //request.setAttribute("msg", msg);
+            request.setAttribute("areaOfRectangle", area);
         }
         
         // To send any data to the VIEW you must use this to forward the
         // request object, which contains the data, to the destination. The
         // destination can be a JSP or another Controller, but cannot be an html page.
-        RequestDispatcher view = request.getRequestDispatcher("/response.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/lab01.jsp");
         view.forward(request, response);
         
         
