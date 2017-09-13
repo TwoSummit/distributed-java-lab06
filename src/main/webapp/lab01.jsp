@@ -14,5 +14,19 @@
     <body>
         <h1>Lab 01</h1>
         
+        <form name="rectangleAreaCalculator" 
+              id="rectangleAreaCalculator" 
+              method="post" 
+              action="calculator">
+            
+            <label for="rectangleAreaCalculator">
+                Enter Name: 
+                <input type="text" value="" name="welcomeMessageName">
+            </label>
+            
+            <input type="submit" name="submit" value="Submit">
+            
+        </form>
+        
     </body>
 </html>
