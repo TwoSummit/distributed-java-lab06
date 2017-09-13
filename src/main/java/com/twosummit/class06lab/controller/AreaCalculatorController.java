@@ -38,23 +38,18 @@ public class AreaCalculatorController extends HttpServlet {
         String area = "";
         try {
             // retrieve form input from view
-            String lengthEntered = request.getParameter("length") != null ? request.getParameter("length") : "Not Available";
-            String widthEntered = request.getParameter("width") != null ? request.getParameter("width") : "Not Available";
+            String lengthEntered = request.getParameter("length") != null ? request.getParameter("length") : "";
+            String widthEntered = request.getParameter("width") != null ? request.getParameter("width") : "";
             
             // process the input by delegating to the model object
-            //WelcomeService ws = new WelcomeService();
             RectangleAreaCalculator rac = new RectangleAreaCalculator(lengthEntered, widthEntered);
-            //msg = ws.getMessage(nameEntered);
             area = rac.getArea();
 
             // store proccessed message in request object for transfer to view
-            //request.setAttribute("welcomeMessage", msg);
             request.setAttribute("areaOfRectangle", area);
             
         } catch( Exception e ) {
-            //msg = e.getMessage();
-            area = e.getMessage();
-            //request.setAttribute("msg", msg);
+            area = "Trouble calculating area";
             request.setAttribute("areaOfRectangle", area);
         }
         
