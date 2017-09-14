@@ -61,7 +61,7 @@
                     <!-- Calculated answer wrapper -->
                     <div class="small-4 cell">
                         <div class="callout">
-                            <p>Area of your rectangle: ${areaOfRectangle}</p>
+                            <p>Area of your rectangle: ${area}</p>
                             <div class="th">
                                 <img src="https://bconline.broward.edu/shared/collegereadiness/math/u01_l10_calcarea/mat%204%2010.jpg">
                             </div>

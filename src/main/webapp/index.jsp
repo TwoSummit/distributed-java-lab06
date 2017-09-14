@@ -17,6 +17,9 @@
             <li>
                 <a href="lab01.jsp">Lab 1</a>
             </li>
+            <li>
+                <a href="lab03.jsp">Lab 3</a>
+            </li>
         </ul>
     </body>
 </html>

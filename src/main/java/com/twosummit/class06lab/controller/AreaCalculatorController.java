@@ -21,7 +21,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AreaCalculatorController", urlPatterns = {"/AreaCalculator"})
 public class AreaCalculatorController extends HttpServlet {
-
+    
+    public static final String CALCULATE_RECTANGLE_AREA = "rectangle";
+    public static final String CALCULATE_CIRCLE_AREA = "CIRCLE";
+    public static final String CALCULATE_TRIANGLE_THIRD_SIDE = "TRIANGLE";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +39,9 @@ public class AreaCalculatorController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String area = "";
+        String calculationType = getCalculationType(request);
+        String area;
+        
         try {
             // retrieve form input from view
             String lengthEntered = request.getParameter("length") != null ? request.getParameter("length") : "";
@@ -46,11 +52,11 @@ public class AreaCalculatorController extends HttpServlet {
             area = rac.getArea();
 
             // store proccessed message in request object for transfer to view
-            request.setAttribute("areaOfRectangle", area);
+            request.setAttribute("area", area);
             
         } catch( Exception e ) {
             area = "Trouble calculating area";
-            request.setAttribute("areaOfRectangle", area);
+            request.setAttribute("area", area);
         }
         
         // To send any data to the VIEW you must use this to forward the
@@ -60,6 +66,18 @@ public class AreaCalculatorController extends HttpServlet {
         view.forward(request, response);
         
         
+    }
+    
+    private String getCalculationType(HttpServletRequest request){
+        String calcType = "";
+        if( request.getParameter("rectangleArea") != null ){
+            calcType = CALCULATE_RECTANGLE_AREA;
+        } else if ( request.getParameter("circleArea") != null ){
+            calcType = CALCULATE_CIRCLE_AREA;
+            
+        }
+        
+        return calcType;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
