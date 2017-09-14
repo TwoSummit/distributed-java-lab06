@@ -5,6 +5,7 @@
  */
 package com.twosummit.class06lab.controller;
 
+import com.twosummit.class06lab.model.CircleAreaCalculator;
 import com.twosummit.class06lab.model.RectangleAreaCalculator;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,29 +41,47 @@ public class AreaCalculatorController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String calculationType = getCalculationType(request);
-        String area;
-        
+        String error = "";
+        String areaOfRectangle;
+        String areaOfCircle;
         try {
-            // retrieve form input from view
-            String lengthEntered = request.getParameter("length") != null ? request.getParameter("length") : "";
-            String widthEntered = request.getParameter("width") != null ? request.getParameter("width") : "";
             
-            // process the input by delegating to the model object
-            RectangleAreaCalculator rac = new RectangleAreaCalculator(lengthEntered, widthEntered);
-            area = rac.getArea();
+            if( calculationType.equals( CALCULATE_RECTANGLE_AREA ) ){
+                // retrieve form input from view
+                String lengthEntered = request.getParameter("length") != null ? request.getParameter("length") : "";
+                String widthEntered = request.getParameter("width") != null ? request.getParameter("width") : "";
 
-            // store proccessed message in request object for transfer to view
-            request.setAttribute("area", area);
+                // process the input by delegating to the model object
+                RectangleAreaCalculator rac = new RectangleAreaCalculator(lengthEntered, widthEntered);
+                areaOfRectangle = rac.getArea();
+                
+                // store proccessed message in request object for transfer to view
+                request.setAttribute("areaOfRectangle", areaOfRectangle);
+            } else if( calculationType.equals( CALCULATE_CIRCLE_AREA )){
+                // retrieve form input from view
+                String radiusEntered = request.getParameter("radius") != null ? request.getParameter("radius") : "";
+
+                // process the input by delegating to the model object
+                CircleAreaCalculator cac = new CircleAreaCalculator(radiusEntered);
+                areaOfCircle = cac.getArea();
+                
+                // store proccessed message in request object for transfer to view
+                request.setAttribute("areaOfCircle", areaOfCircle);
+            } else {
+                
+            }
+
             
-        } catch( Exception e ) {
-            area = "Trouble calculating area";
-            request.setAttribute("area", area);
+        } 
+        catch( Exception e ) {
+            error = "Trouble calculating area";
+            request.setAttribute("errorMsg", error);
         }
         
         // To send any data to the VIEW you must use this to forward the
         // request object, which contains the data, to the destination. The
         // destination can be a JSP or another Controller, but cannot be an html page.
-        RequestDispatcher view = request.getRequestDispatcher("/lab01.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/lab03.jsp");
         view.forward(request, response);
         
         

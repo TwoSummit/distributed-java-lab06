@@ -35,6 +35,10 @@
                     
                     <!-- rectangle form wrapper -->
                     <div class="small-8 cell">
+                    
+                        <h3>Area of Rectangle Calculator</h3>
+                        <hr>
+                    
                         <form name="rectangleAreaCalculator" 
                               id="rectangleAreaCalculator" 
                               method="post" 
@@ -86,9 +90,12 @@
                 
                 <!-- Circle form contents wrapper -->
                 <div class="grid-x grid-padding-x">
-                    
                     <!-- rectangle form wrapper -->
                     <div class="small-8 cell">
+                        
+                        <h3>Area of Circle Calculator</h3>
+                        <hr>
+                        
                         <form name="circleAreaCalculator" 
                               id="circleAreaCalculator" 
                               method="post" 
@@ -115,16 +122,65 @@
                     <!-- Calculated answer wrapper -->
                     <div class="small-4 cell">
                         <div class="callout">
-                            <p>Area of your circle: ${areaOfRectangle}</p>
+                            <p>Area of your circle: ${areaOfCircle}</p>
                             <div class="th">
                                 <img src="http://www.kidsmathgamesonline.com/images/pictures/math680/circlearea.jpg">
                             </div>
                         </div>
                     </div><!-- Calculated answer wrapper -->
-                </div><!-- !Rectangle form contents wrapper -->
+                </div><!-- Circle form contents wrapper -->
                 
             </div>
-        </div><!-- #rectangleCalculatorWrapper -->
+        </div><!-- Circle Calculator Contents -->
+
+        <!-- Third Side of Triangle Calculator Contents -->
+        <div id="circleCalculatorWrapper" class="row">
+            <div class="grid-container">
+                
+                <!-- Third Side of Triangle form contents wrapper -->
+                <div class="grid-x grid-padding-x">
+                    <!-- rectangle form wrapper -->
+                    <div class="small-8 cell">
+                        
+                        <h3>Third Side of Triangle Calculator</h3>
+                        <hr>
+                        
+                        <form name="thirdSideOfTriangleCalculator" 
+                              id="circleAreaCalculator" 
+                              method="post" 
+                              action="AreaCalculator">
+
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label>Radius
+                                        <input type="text" placeholder="example: 7.12" name="radius" />
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <input type="hidden" name="circleArea" />
+                                    <button type="submit" name="submit" class="button">Calculate Area</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div><!-- !rectangle form wrapper -->
+                
+                    <!-- Calculated answer wrapper -->
+                    <div class="small-4 cell">
+                        <div class="callout">
+                            <p>Area of your circle: ${areaOfCircle}</p>
+                            <div class="th">
+                                <img src="http://www.kidsmathgamesonline.com/images/pictures/math680/circlearea.jpg">
+                            </div>
+                        </div>
+                    </div><!-- Calculated answer wrapper -->
+                </div><!-- Circle form contents wrapper -->
+                
+            </div>
+        </div><!-- Circle Calculator Contents -->
     
     </body>
 </html>
