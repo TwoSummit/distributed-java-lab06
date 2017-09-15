@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CalculateSideOfShapeController extends HttpServlet {
     private final String SIDE_A = "sideA";
     private final String SIDE_B = "sideB";
+    private final String CALCULATE_TRIANGLE_THIRD_SIDE = "calculateTriangleThirdSide";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,22 +40,25 @@ public class CalculateSideOfShapeController extends HttpServlet {
         String calculatedSide;
         String error = null;
         String location = null;
+        String calculationType = getCalculationType(request);
     
         try {
-            // set location + error message
-            location = "triangleThirdSideError";
-            error = "Could not calculate third side of triangle";
-            
-            // retrieve form input from view
-            String sideAValue = request.getParameter( SIDE_A ) != null ? request.getParameter( SIDE_A ) : "";
-            String sideBValue = request.getParameter( SIDE_B ) != null ? request.getParameter( SIDE_B ) : "";
+            if( calculationType.equals(CALCULATE_TRIANGLE_THIRD_SIDE) ){
+                // set location + error message
+                location = "triangleThirdSideError";
+                error = "Could not calculate third side of triangle";
 
-            // process the input by delegating to the model object
-            TriangleSideCalculator tsc = new TriangleSideCalculator(sideAValue, sideBValue);
-            calculatedSide = tsc.getLastSide();
+                // retrieve form input from view
+                String sideAValue = request.getParameter( SIDE_A ) != null ? request.getParameter( SIDE_A ) : "";
+                String sideBValue = request.getParameter( SIDE_B ) != null ? request.getParameter( SIDE_B ) : "";
 
-            // store proccessed message in request object for transfer to view
-            request.setAttribute("sideOfTriangle", calculatedSide);
+                // process the input by delegating to the model object
+                TriangleSideCalculator tsc = new TriangleSideCalculator(sideAValue, sideBValue);
+                calculatedSide = tsc.getLastSide();
+
+                // store proccessed message in request object for transfer to view
+                request.setAttribute("sideOfTriangle", calculatedSide);
+            }
         } 
         catch( Exception e ) {
             if( error == null ){
@@ -72,6 +76,16 @@ public class CalculateSideOfShapeController extends HttpServlet {
         RequestDispatcher view = request.getRequestDispatcher("/lab03.jsp");
         view.forward(request, response);
         
+    }
+    
+    
+    private String getCalculationType(HttpServletRequest request){
+        String calcType = "";
+        if( request.getParameter("calculateTriangleThirdSide") != null ){
+            calcType = CALCULATE_TRIANGLE_THIRD_SIDE;
+        } 
+        
+        return calcType;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

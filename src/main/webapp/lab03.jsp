@@ -163,14 +163,14 @@
                             <div class="row">
                                 <div class="small-12 columns">
                                     <label>Known Side B:
-                                        <input type="text" placeholder="example: 2" name="sideB" />
+                                        <input type="text" placeholder="example: 3.0" name="sideB" />
                                     </label>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="small-12 columns">
-                                    <input type="hidden" name="triangleThirdSide" />
+                                    <input type="hidden" name="calculateTriangleThirdSide" />
                                     <button type="submit" name="submit" class="button">Calculate Side</button>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                         <div class="callout">
                             <p>Third side of your triangle: ${sideOfTriangle}</p>
                             <img src="http://mathworld.wolfram.com/images/eps-gif/PythagoreanTheoremFigure_1000.gif">
-                            <p class="errorClr">${thirdSideOfTriangleError}</p>
+                            <p class="errorClr">${triangleThirdSideError}</p>
                         </div>
                     </div><!-- Calculated answer wrapper -->
                 </div><!-- Circle form contents wrapper -->
