@@ -41,14 +41,14 @@ public class AreaCalculatorController extends HttpServlet {
         
         String calculationType = getCalculationType(request);
         String error = "";
-        String location = "";
+        String displayErrorLocation = "";
         String areaOfRectangle;
         String areaOfCircle;
         try {
             
             if( calculationType.equals( CALCULATE_RECTANGLE_AREA ) ){
                 // set location + error message
-                location = "areaOfRectangleError";
+                displayErrorLocation = "areaOfRectangleError";
                 error = "Could not calculate side of rectangle";
                 
                 // retrieve form input from view
@@ -63,7 +63,7 @@ public class AreaCalculatorController extends HttpServlet {
                 request.setAttribute("areaOfRectangle", areaOfRectangle);
             } else if( calculationType.equals( CALCULATE_CIRCLE_AREA )){
                 // set location + error message
-                location = "areaOfCircleError";
+                displayErrorLocation = "areaOfCircleError";
                 error = "Could not calculate side of circle";
                 
                 // retrieve form input from view
@@ -82,7 +82,7 @@ public class AreaCalculatorController extends HttpServlet {
             
         } 
         catch( Exception e ) {
-            request.setAttribute(location, error);
+            request.setAttribute(displayErrorLocation, error);
         }
         
         // To send any data to the VIEW you must use this to forward the
