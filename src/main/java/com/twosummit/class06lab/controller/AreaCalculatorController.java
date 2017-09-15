@@ -76,7 +76,9 @@ public class AreaCalculatorController extends HttpServlet {
                 // store proccessed message in request object for transfer to view
                 request.setAttribute("areaOfCircle", areaOfCircle);
             } else {
-                
+                // set location + error message
+                displayErrorLocation = "genericError";
+                error = "Unsupported calculation type.";
             }
 
             
